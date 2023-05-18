@@ -1,44 +1,44 @@
 // Online Java Compiler
 // Use this editor to write, compile and run your Java code online
 
-public class StackExample {
+public class StackGenericExample {
     public static void main(String[] args) throws Exception {
         
-        Stack s=new Stack();
-        s.push(100);
-        s.push(200);
-        s.push(300);
-        s.push(400);
-        s.push(500);
-        s.push(600);
+        Stack<Character> s=new Stack<>();
+        s.push('a');
+        s.push('b');
+        s.push('c');
+        s.push('d');
+        s.push('e');
+        s.push('f');
         
         try{
-            System.out.printf("Pop 1: %d\n", s.pop());
-            System.out.printf("Pop 2: %d\n", s.pop());
-            System.out.printf("Peek 1: %d\n", s.peek());
-            System.out.printf("Pop 3: %d\n", s.pop());
-            System.out.printf("Peek 2: %d\n", s.peek());
+            System.out.printf("Pop 1: %s\n", s.pop());
+            System.out.printf("Pop 2: %s\n", s.pop());
+            System.out.printf("Peek 1: %s\n", s.peek());
+            System.out.printf("Pop 3: %s\n", s.pop());
+            System.out.printf("Peek 2: %s\n", s.peek());
         }catch(Exception e){
              System.out.println(e.getMessage());
         }
     }
 }
 
-class Stack{
-    private StackNode top;
+class Stack<T>{
+    private StackNode<T> top;
     
     public Stack(){
     }
     
-    public Stack(int data){
+    public Stack(T data){
         top=new StackNode(data);
     }
     
-    private class StackNode{
-        int data;
+    private class StackNode<T>{
+        T data;
         StackNode next;
         
-        StackNode(int _data){
+        StackNode(T _data){
             this.data=_data;    
         }
     }
@@ -47,7 +47,7 @@ class Stack{
         return top==null;    
     }
     
-    public void push(int data){
+    public void push(T data){
         StackNode newNode=new StackNode(data);
         //check empty stack
         if(isEmpty()){
@@ -59,16 +59,16 @@ class Stack{
         top = newNode; // Make new node the current top
     }
     
-    public int pop() throws Exception{
+    public T pop() throws Exception{
         if(isEmpty())
             throw new Exception("Pop: No element");
             
-        int value = top.data;
+        T value = top.data;
         top=top.next; //remove top of stack
         return value;
     }
     
-    public int peek() throws Exception{
+    public T peek() throws Exception{
         if(isEmpty()) 
             throw new Exception("Peek: No element");
         return top.data;
