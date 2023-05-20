@@ -6,13 +6,13 @@ class StackUsingArray {
    
     
     public static void main(String[] args)  throws Exception {
-        Stack<String> stack= new Stack<>();
+        Stack stack= new Stack();
         stack.push(2000);
         stack.push(4000);
-        System.out.printf("pop1: %s \n",stack.pop());
-        System.out.printf("peek1: %s \n",stack.peek());
-        System.out.printf("pop2: %s \n",stack.pop());
-        System.out.printf("peek2: %s \n",stack.peek());
+        System.out.printf("pop1: %d \n",stack.pop());
+        System.out.printf("peek1: %d \n",stack.peek());
+        System.out.printf("pop2: %d \n",stack.pop());
+        System.out.printf("peek2: %d \n",stack.peek());
     }
 }
 
