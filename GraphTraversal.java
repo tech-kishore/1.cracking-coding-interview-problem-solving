@@ -4,16 +4,34 @@ class GraphTraversal {
     public static void main(String[] args) {
         int len=6;
         Graph graph = createGraph(len);
-        DFS(graph,0,len);
+        // DFS(graph,0,len);
+        Graph.Node start = graph.getVertex(0);
+        dfs(graph,start);
     }
     
-    private static void DFS(Graph g,int idx,int len){
+     private static void dfs(Graph g, Graph.Node root){
+        if(root==null)
+            return;
+        root.visited = true;
+        for(Graph.Node n: root.neighbors){
+            if(n!=null && n.visited==false){
+                System.out.printf("> Pnode = %s \n",n);
+                dfs(g,n);
+            }
+        }
+        // Above code lists child nodes
+        
+        //******** WHAT ABOUT NEXT PARENT NODES -- WORK HERE *********
+        // dfs(g, g.getVertex(idx+1),idx+1);
+     }
+    
+    private static void DFS1(Graph g,int idx,int len){
         if(idx>=len)
             return;
         Graph.Node start = g.getVertex(idx);
         System.out.printf("> Pnode = %s \n",start);
         search(start);
-        DFS(g,idx++,len);
+        DFS1(g,idx++,len);
     }
     
     private static void search(Graph.Node start){
