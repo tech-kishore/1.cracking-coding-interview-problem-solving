@@ -1,12 +1,16 @@
 // Online Java Compiler
 // Use this editor to write, compile and run your Java code online
 
-class HelloWorld {
+public class GraphExample {
     public static void main(String[] args) {
         Graph g = new Graph(6);
-        g.addEdge(1,2);
+        g.addEdge(0,2);
+        g.addEdge(0,4);
+        g.addEdge(2,1);
+        g.addEdge(0,5);
+        g.addEdge(4,3);
+        g.addEdge(4,5);
         g.traverse();
-        // System.out.println("Hello, World!");
     }
 }
 
@@ -33,10 +37,10 @@ class Graph{
     
     public void traverse(){
         for(Node n: nodes){
-            System.out.printf("%s",n);
+            System.out.printf("\n%s",n);
             for(Node r: n.neighbors){
                 if(r!=null)
-                    System.out.printf("\n \t%s >", r);
+                    System.out.printf("\n \t>%s ", r);
             }
         }
     }
