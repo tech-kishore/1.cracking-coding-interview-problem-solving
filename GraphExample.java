@@ -21,7 +21,7 @@ class Graph{
         this.size=v;
         nodes = new Node[size];
         
-        // create graph
+        // create vertices of graph
         for(int i=0;i<size;i++){
             nodes[i]=new Node("n"+i);
         }
