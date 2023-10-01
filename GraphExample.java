@@ -1,19 +1,52 @@
-// Online Java Compiler
-// Use this editor to write, compile and run your Java code online
+package cci;
+
+import java.util.LinkedList;
+
+import cci.Graph.Node;
 
 public class GraphExample {
-    public static void main(String[] args) {
-        Graph g = new Graph(6);
-        g.addEdge(0,2);
-        g.addEdge(0,4);
-        g.addEdge(2,1);
-        g.addEdge(0,5);
-        g.addEdge(4,3);
-        g.addEdge(4,5);
-        g.traverse();
-    }
-}
+	public static void main(String[] args) {
+		 Graph g = new Graph(6);
+	        g.addEdge(0,2);
+	        g.addEdge(0,4);
+	        g.addEdge(2,1);
+	        g.addEdge(0,5);
+	        g.addEdge(4,3);
+	        g.addEdge(4,5);
+	        
+	        Node searchNode=g.getNode(3);
+	        boolean found = bfs_search(g, searchNode);
+	        System.out.printf("\nFound %s: %b",searchNode, found);
 
+	        g.traverse();
+	}
+	
+	private static boolean bfs_search(Graph g, Node n) {
+		Node start = g.getNode(0);
+		if(start==n)
+			return true;
+
+		LinkedList<Node> q = new LinkedList<Node>();
+		q.add(start);
+		
+		
+		while(!q.isEmpty()) {
+			Node r = q.pollFirst();
+			r.visited=true;
+			for(Node curr:r.neighbors) {
+				if(curr!=null && !curr.visited) {
+					System.out.printf("\ncurr: %s",curr);
+					q.add(curr);
+					if(n==curr) {
+						return true;
+					}
+				}
+			}
+		}
+		
+		return false;
+	}
+}
 class Graph{
     private int size;
     private Node[] nodes;
@@ -25,6 +58,9 @@ class Graph{
         for(int i=0;i<size;i++){
             nodes[i]=new Node("n"+i);
         }
+    }
+    public Node getNode(int idx) {
+    	return nodes[idx];
     }
     
     public void addEdge(int idx1, int idx2){
@@ -45,7 +81,7 @@ class Graph{
         }
     }
     
-    class Node{
+   protected class Node{
         public String name;
         public Node[] neighbors = new Node[size-1];
         public int idx; // neighbours current size
@@ -58,8 +94,7 @@ class Graph{
         public String toString(){
             return name;
         }
-        
     }
-    
-    
 }
+
+
