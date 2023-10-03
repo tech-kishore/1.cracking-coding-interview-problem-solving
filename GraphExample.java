@@ -14,11 +14,22 @@ public class GraphExample {
 	        g.addEdge(4,3);
 	        g.addEdge(4,5);
 	        
+            // g.traverse();
+	        
+	        //search node
 	        Node searchNode=g.getNode(3);
-	        boolean found = bfs_search(g, searchNode);
+	        
+	        // BFS Search
+	        // boolean found = bfs_search(g, searchNode);
+	        
+	        // DFS Search
+            boolean found = dfs_search(g, searchNode);
+            
 	        System.out.printf("\nFound %s: %b",searchNode, found);
-
-	        g.traverse();
+	}
+	
+	private static boolean dfs_search(Graph g, Node n){
+	    return false;
 	}
 	
 	private static boolean bfs_search(Graph g, Node n) {
@@ -28,7 +39,6 @@ public class GraphExample {
 
 		LinkedList<Node> q = new LinkedList<Node>();
 		q.add(start);
-		
 		
 		while(!q.isEmpty()) {
 			Node r = q.pollFirst();
@@ -96,5 +106,3 @@ class Graph{
         }
     }
 }
-
-
