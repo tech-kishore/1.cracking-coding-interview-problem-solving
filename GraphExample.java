@@ -1,8 +1,8 @@
-package cci;
+package graph;
 
 import java.util.LinkedList;
 
-import cci.Graph.Node;
+import graph.Graph.Node;
 
 public class GraphExample {
 	public static void main(String[] args) {
@@ -17,18 +17,33 @@ public class GraphExample {
             // g.traverse();
 	        
 	        //search node
-	        Node searchNode=g.getNode(3);
+	        Node searchNode=g.getNode(1);
 	        
 	        // BFS Search
 	        // boolean found = bfs_search(g, searchNode);
 	        
 	        // DFS Search
-            boolean found = dfs_search(g, searchNode);
+            boolean found = dfs_search(g,g.getNode(0), searchNode);
             
 	        System.out.printf("\nFound %s: %b",searchNode, found);
 	}
 	
-	private static boolean dfs_search(Graph g, Node n){
+	private static boolean dfs_search(Graph g, Node start, Node n){
+        
+        // mark start as visited
+        start.visited=true;
+        
+        System.out.printf("- %s\n",start);
+        
+        for(Node curr: start.neighbors){
+            if(curr==null || curr.visited)
+                continue;
+           
+            System.out.printf(" -- %s\n",curr);
+            
+            //recurse
+            dfs_search(g, curr,n);
+        }
 	    return false;
 	}
 	
