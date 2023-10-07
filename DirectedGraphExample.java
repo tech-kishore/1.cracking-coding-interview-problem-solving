@@ -1,5 +1,6 @@
 package graph;
 
+import java.util.LinkedList;
 import graph.DirectedGraph.Node;
 
 public class DirectedGraphExample{
@@ -9,30 +10,56 @@ public class DirectedGraphExample{
 
         Node n1=g.getNode(0);
         Node n2=g.getNode(5);
-
-        boolean routeExist = dfs_search_route_exist(g,n1,n2);
-        System.out.printf("Route exist: %b",routeExist);
         
+        //DFS
+        System.out.println("Using DFS ................");
+        boolean routeExistDFS = dfs_search_route_exist(g,n1,n2);
+        System.out.printf("Route exist: %b\n",routeExistDFS);
+
+        System.out.println("==========================================");
+        
+        // BFS [ ********** CHECK LOGIC ****************]
+        System.out.println("Using BFS ................");
+        boolean routeExistBFS = bfs_search_route_exist(g,n1,n2);
+        System.out.printf("Route exist: %b",routeExistBFS);
+               
         // traverse
         // g.traverse();
     }
 
-    private static boolean dfs_search_route_exist(DirectedGraph g, Node n1, Node n2) {
-        System.out.printf("%s - %s - %b\n",n1,n2, n1==n2);
-         if(n1==n2)
-            return true;
+    private static boolean bfs_search_route_exist(DirectedGraph g, Node n1, Node n2) {
+        LinkedList<Node> queue = new LinkedList<>();
+        Node start = n1;
+        queue.add(start);
+        Node r =null;
+        System.out.printf("%s \n",start);
+        while(!queue.isEmpty()){
+            r=queue.pollFirst();
+            r.visited=true;
+            for(Node curr : r.neighbors){
+                if(curr!=null && !curr.visited){
+                    System.out.printf("%s - %s\n",curr,n2);
+                    if(curr==n2)
+                        return true;
+                    queue.add(curr);
+                }
+            }
+        }
+        return false;
+    }
 
+    private static boolean dfs_search_route_exist(DirectedGraph g, Node n1, Node n2) {
         Node start = n1;
         start.visited = true;
         
-        for(Node curr: n1.neighbors){
-            if(curr==null)
-                continue;
+        for(Node neighbor: start.neighbors){
+            System.out.printf("%s - %s\n",neighbor,n2);
+            if(neighbor==n2)
+                return true;
             
-           
-            if(!curr.visited){
+            if(neighbor!=null && !neighbor.visited){
                 //recursive
-               return dfs_search_route_exist(g, curr, n2);
+               return dfs_search_route_exist(g, neighbor, n2);
             }
         }
 
