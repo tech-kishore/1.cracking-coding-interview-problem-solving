@@ -27,12 +27,14 @@ public class ValidateBST {
         // For left child
         if(min!=null && min > parent.val)
             return false;
-        else if(!checkBST(parent.left, null, parent.val))
+        // here max = parent val and left child must be min
+        else if(!checkBST(parent.left, null, parent.val)) 
             return false;
       
         // For right child
         if(max!=null && max < parent.val)
             return false;
+        // here min = parent val and right child must be max
         else if(!checkBST(parent.right, parent.val, null))
             return false;
 
@@ -60,9 +62,9 @@ class NewTree{
 
     public static Node generate(){
 
-    // BST
-    // /*
-    Node root = new Node(8);
+        // BST
+        // /*
+        Node root = new Node(8);
 		Node n2 = new Node(4);
 		Node n3 = new Node(10);
 		Node n4 = new Node(2);
@@ -70,7 +72,7 @@ class NewTree{
 		// Node n6 = new Node(0);
 		Node n7 = new Node(20);
 
-    root.left=n2;
+        root.left=n2;
 		root.right=n3;
 		
 		n2.left=n4;
@@ -78,11 +80,11 @@ class NewTree{
 		
 		// n3.left=n6;
 		n3.right=n7;
-    // */
+        // */
         
-    // Non BST
-    /*
-    Node root = new Node(8);
+        // Non BST
+        /*
+        Node root = new Node(8);
 		Node n2 = new Node(41);
 		Node n3 = new Node(10);
 		Node n4 = new Node(2);
@@ -90,15 +92,15 @@ class NewTree{
 		// Node n6 = new Node(0);
 		Node n7 = new Node(20);
 
-    root.left=n2;
+        root.left=n2;
 		root.right=n3;
 		n2.left=n4;
 		n2.right=n5;
 		n3.right=n7;
-    */
+        */
 
-    // Non BST - 2
-    /* Test case fails gor this >>> work on this...
+        // Non BST - 2
+        /* Test case fails gor this >>> work on this...
         Node root = new Node(20);
 		Node n2 = new Node(10);
 		Node n3 = new Node(30);
@@ -107,10 +109,10 @@ class NewTree{
 		// Node n6 = new Node(0);
 		// Node n7 = new Node(20);
 
-    root.left=n2;
+        root.left=n2;
 		root.right=n3;
 		n2.right=n5;
-    */
+        */
 
 		return root;
     }
