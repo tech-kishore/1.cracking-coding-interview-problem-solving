@@ -1,5 +1,3 @@
-
-
 /**
  * Ex #4.8
  * Design an algorithm to find the first common anchestor of two nodes in a binary tree.
@@ -21,19 +19,14 @@
  * @author Kishore
  */
 public class FirstCommonAnchestorWithNoAddlDataStructureNonBST {
-
     // For testing only declared here
     static Node i1 = null;
     static Node i2 = null;
 
     public static void main(String[] args) {
-
         Node root = buildTree();
-
         Node fca = findFCA(root,i1,i2);
-
         System.out.printf("\nLCA of %s & %s :    %s\n\n",i1.val,i2.val,fca.val);
-
         // traverse(root);
     }
 
@@ -55,7 +48,6 @@ public class FirstCommonAnchestorWithNoAddlDataStructureNonBST {
             shallow = shallow.parent;
             deep = deep.parent;
         }
-        
         return null;
     }
 
@@ -74,12 +66,10 @@ public class FirstCommonAnchestorWithNoAddlDataStructureNonBST {
             depth++;
             node=node.parent;
         }
-
         return depth;
     }
 
     private static Node buildTree(){
-
         Node root= new Node(1);
         Node n2=new Node(2);
         Node n3=new Node(3);
